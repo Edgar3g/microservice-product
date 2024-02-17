@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Data
 public class ProductDTO {
     @NotBlank
-    private String nome;
+    private String name;
 
     @Positive
     private BigDecimal price = new BigDecimal("0.0");

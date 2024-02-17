@@ -3,12 +3,11 @@ package com.dikenge.ms.warehousems.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
 @Entity
-@Table(name="tb_wehehouse")
+@Table(name="tb_warehouse")
 public class Werehouse {
 
     @Id
