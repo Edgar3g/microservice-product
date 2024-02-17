@@ -47,6 +47,16 @@ public class ProductServiceImpl implements ProductService {
 
         return res;
     }
+
+    @Override
+    public boolean inactive(UUID id) {
+      Optional<Products> product =  repository.findById(id);
+        if(product.isPresent()){
+            product.get().setAvailable(false);
+            return true;
+        }
+        return false;
+    }
 }
 /*        for (Products product : products)
         {

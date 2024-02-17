@@ -14,4 +14,6 @@ public interface ProductService {
 
     Optional<ProductDTO> getById(UUID id);
     List<ProductDTO> getAll();
+
+    boolean inactive(UUID id);
 }
