@@ -6,6 +6,7 @@ import com.dikenge.ms.productms.dto.ProductDTO;
 import com.dikenge.ms.productms.service.ProductService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class ServiceTest {
 
+    @Autowired
     private ProductService service;
 
     @BeforeAll
