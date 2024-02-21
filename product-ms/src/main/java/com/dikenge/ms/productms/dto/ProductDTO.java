@@ -7,16 +7,18 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 public class ProductDTO {
+    private UUID id;
     @NotBlank
     private String name;
 
     @Positive
-    private BigDecimal price = new BigDecimal("0.0");
+    private float price;
 
-    @Size(min = 50)
+    @Size(min = 10)
     private String description;
     private boolean isAvailable;
 }

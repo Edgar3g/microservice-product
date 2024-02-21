@@ -16,4 +16,6 @@ public interface ProductService {
     List<ProductDTO> getAll();
 
     boolean inactive(UUID id);
+
+    Optional<ProductDTO> update(UUID id, ProductDTO request);
 }

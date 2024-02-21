@@ -18,7 +18,7 @@ public class Products {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private BigDecimal price = new BigDecimal("0.0");
+    private float price;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false )

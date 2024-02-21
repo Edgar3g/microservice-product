@@ -5,12 +5,14 @@ import com.dikenge.ms.productms.models.Products;
 import com.dikenge.ms.productms.repository.ProductRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -18,8 +20,8 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ModelMapper mapper;
     @Override
-    public Optional<ProductDTO> create(@org.jetbrains.annotations.NotNull ProductDTO request) {
-
+    public Optional<ProductDTO> create(ProductDTO request) {
+        request.setAvailable(true);
         Products product = mapper.map(request, Products.class);
         repository.saveAndFlush(product);
 
@@ -53,9 +55,25 @@ public class ProductServiceImpl implements ProductService {
       Optional<Products> product =  repository.findById(id);
         if(product.isPresent()){
             product.get().setAvailable(false);
+            repository.save(product.get());
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Optional<ProductDTO> update(UUID id, ProductDTO request) {
+        Optional<Products> product = repository.findById(id);
+
+        if(product.isPresent())
+        {
+            product.get().setDescription(request.getDescription());
+            product.get().setPrice(request.getPrice());
+            repository.save(product.get());
+            return Optional.of(mapper.map(product.get(), ProductDTO.class));
+        }
+
+        return Optional.empty();
     }
 }
 /*        for (Products product : products)
