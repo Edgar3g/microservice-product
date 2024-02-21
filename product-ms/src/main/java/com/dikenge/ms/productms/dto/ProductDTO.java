@@ -20,3 +20,4 @@ public class ProductDTO {
     private String description;
     private boolean isAvailable;
 }
+
