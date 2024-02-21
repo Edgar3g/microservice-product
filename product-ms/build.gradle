@@ -32,6 +32,9 @@ dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.2.2'
 	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
+	// https://mvnrepository.com/artifact/br.com.six2six/fixture-factory
+	implementation group: 'br.com.six2six', name: 'fixture-factory', version: '3.1.0'
+
 }
 
 tasks.named('test') {
