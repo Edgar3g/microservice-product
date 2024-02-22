@@ -12,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,5 +52,20 @@ public class ServiceTest {
 
         System.out.println("Data from service: " + response.size());
 
+    }
+
+    @Test
+    public void shouldGetById(){
+        ProductDTO request = Fixture.from(ProductDTO.class).gimme("valid");
+        Optional<ProductDTO> response= service.create(request);
+
+        UUID id =  response.get().getId();
+
+        Optional<ProductDTO> responseByID = service.getById(id);
+
+
+        assertNotNull(responseByID);
+        assertEquals(request.getName(),
+                responseByID.get().getName());
     }
 }
