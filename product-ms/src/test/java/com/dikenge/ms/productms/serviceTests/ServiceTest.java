@@ -8,11 +8,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = {"classpath:clear-database.sql"})
 @SpringBootTest
 public class ServiceTest {
 
@@ -34,5 +37,19 @@ public class ServiceTest {
         assertEquals(request.getDescription(), response.get().getDescription());
         assertEquals(request.getPrice(), response.get().getPrice());
         assertTrue(response.get().isAvailable());
+    }
+
+    @Test
+    public void shouldGetAllProducts(){
+        ProductDTO request = Fixture.from(ProductDTO.class).gimme("valid");
+        Optional<ProductDTO> responses = service.create(request);
+        List<ProductDTO> response = service.getAll();
+
+        assertNotNull(responses);
+        assertEquals(responses.get().getName(), response.get(0).getName());
+        assertEquals(responses.get().getId(), response.get(0).getId());
+
+        System.out.println("Data from service: " + response.size());
+
     }
 }
