@@ -68,4 +68,17 @@ public class ServiceTest {
         assertEquals(request.getName(),
                 responseByID.get().getName());
     }
+
+    @Test
+    public void shouldUpdate(){
+        ProductDTO request = Fixture.from(ProductDTO.class).gimme("valid");
+        Optional<ProductDTO> response = service.create(request);
+        UUID id  = response.get().getId();
+
+        request.setDescription("Asus PC, dos fodidos mauuuuu rijo dos duros eh duro");
+
+        Optional<ProductDTO> updatedProductDTO = service.update(id, request);
+        assertNotNull(updatedProductDTO);
+        assertEquals(updatedProductDTO.get().getDescription(), request.getDescription());
+    }
 }
